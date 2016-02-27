@@ -2,4 +2,11 @@
     <string name="app_name">ToShakeList</string>
     <string name="title_schedule_detail">Schedule Detail</string>
     <string name="content_authority">com.nex3z.toshakelist</string>
+    <string name="title_activity_add_fragment">AddFragmentActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="schedule_title">Title</string>
+    <string name="schedule_all_day">All day</string>
+    <string name="schedule_start">Start</string>
+    <string name="schedule_end">End</string>
 </resources>

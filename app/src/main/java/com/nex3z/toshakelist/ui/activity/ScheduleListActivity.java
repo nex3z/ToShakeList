@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.nex3z.toshakelist.R;
+import com.nex3z.toshakelist.ui.AddScheduleActivity;
 import com.nex3z.toshakelist.ui.fragment.ScheduleDetailFragment;
 import com.nex3z.toshakelist.dummy.DummyContent;
 
@@ -50,8 +51,8 @@ public class ScheduleListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(ScheduleListActivity.this, AddScheduleActivity.class);
+                startActivity(intent);
             }
         });
 
