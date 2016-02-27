@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ToShakeList</string>
+    <string name="title_schedule_detail">Schedule Detail</string>
+    <string name="content_authority">com.nex3z.toshakelist</string>
+</resources>
