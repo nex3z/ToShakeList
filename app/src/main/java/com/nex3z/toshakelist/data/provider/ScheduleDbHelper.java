@@ -22,8 +22,8 @@ public class ScheduleDbHelper extends SQLiteOpenHelper {
                 ScheduleEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
                 ScheduleEntry.COLUMN_DETAIL + " TEXT NOT NULL, " +
                 ScheduleEntry.COLUMN_TYPE + " TEXT NOT NULL, " +
-                ScheduleEntry.COLUMN_DATE_FROM + " INTEGER NOT NULL, " +
-                ScheduleEntry.COLUMN_DATE_TO + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_DATE_START + " INTEGER NOT NULL, " +
+                ScheduleEntry.COLUMN_DATE_END + " INTEGER NOT NULL, " +
                 ScheduleEntry.COLUMN_REPEAT_SCHEDULE + " TEXT NOT NULL, " +
                 ScheduleEntry.COLUMN_ALARM_TIME + " INTEGER NOT NULL, " +
                 ScheduleEntry.COLUMN_REPEAT_ALARM_TIMES + " INTEGER NOT NULL, " +

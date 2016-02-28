@@ -27,7 +27,7 @@
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".ui.activity.ScheduleListActivity"
-        tools:listitem="@layout/schedule_item" />
+        tools:listitem="@layout/item_schedule" />
 
     <FrameLayout
         android:id="@+id/schedule_detail_container"

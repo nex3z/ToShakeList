@@ -27,8 +27,8 @@ public class ScheduleContract {
         public static final String COLUMN_DETAIL = "detail";
         public static final String COLUMN_TYPE = "type";
 
-        public static final String COLUMN_DATE_FROM = "date_from";
-        public static final String COLUMN_DATE_TO = "date_to";
+        public static final String COLUMN_DATE_START = "date_start";
+        public static final String COLUMN_DATE_END = "date_end";
         public static final String COLUMN_REPEAT_SCHEDULE = "repeat_schedule";
 
         public static final String COLUMN_ALARM_TIME = "alarm_time";

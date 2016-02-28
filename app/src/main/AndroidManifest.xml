@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nex3z.toshakelist" >
+    package="com.nex3z.toshakelist">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,11 +9,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.ScheduleListActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
             android:name=".ui.activity.ScheduleDetailActivity"
             android:label="@string/title_schedule_detail"
             android:parentActivityName=".ui.activity.ScheduleListActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.activity.ScheduleListActivity" />
@@ -37,10 +37,10 @@
             android:syncable="true" />
 
         <activity
-            android:name=".ui.AddScheduleActivity"
-            android:label="@string/title_activity_add_fragment"
+            android:name=".ui.activity.AddScheduleActivity"
+            android:label="@string/title_activity_add"
             android:parentActivityName=".ui.activity.ScheduleListActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.nex3z.toshakelist.ui.activity.ScheduleListActivity" />
