@@ -40,12 +40,11 @@ public class AddScheduleActivity extends AppCompatActivity
     private Calendar mScheduleStart;
     private Calendar mScheduleEnd;
 
-
-    @Bind(R.id.edit_schedule_title) EditText editScheduleTitle;
-    @Bind(R.id.btn_schedule_date_start) Button btnScheduleDateStart;
-    @Bind(R.id.btn_schedule_time_start) Button btnScheduleTimeStart;
-    @Bind(R.id.btn_schedule_date_end) Button btnScheduleDateEnd;
-    @Bind(R.id.btn_schedule_time_end) Button btnScheduleTimeEnd;
+    @Bind(R.id.edit_schedule_title) EditText mEditScheduleTitle;
+    @Bind(R.id.btn_schedule_date_start) Button mBtnScheduleDateStart;
+    @Bind(R.id.btn_schedule_time_start) Button mBtnScheduleTimeStart;
+    @Bind(R.id.btn_schedule_date_end) Button mBtnScheduleDateEnd;
+    @Bind(R.id.btn_schedule_time_end) Button mBtnScheduleTimeEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,17 +95,17 @@ public class AddScheduleActivity extends AppCompatActivity
         switch (view.getTag()) {
             case TAG_START_DATE_PICK_DLG: {
                 calendar = mScheduleStart;
-                button = btnScheduleDateStart;
+                button = mBtnScheduleDateStart;
                 break;
             }
             case TAG_END_DATE_PICK_DLG: {
                 calendar = mScheduleEnd;
-                button = btnScheduleDateEnd;
+                button = mBtnScheduleDateEnd;
                 break;
             }
             default: {
                 calendar = mScheduleStart;
-                button = btnScheduleDateStart;
+                button = mBtnScheduleDateStart;
                 break;
             }
 
@@ -152,7 +151,7 @@ public class AddScheduleActivity extends AppCompatActivity
                         mScheduleStart.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         mScheduleStart.set(Calendar.MINUTE, minute);
                         mScheduleStart.set(Calendar.SECOND, second);
-                        btnScheduleTimeStart.setText(TIME_FORMAT.format(mScheduleStart.getTime()));
+                        mBtnScheduleTimeStart.setText(TIME_FORMAT.format(mScheduleStart.getTime()));
                     }
                 },
                 mScheduleStart.get(Calendar.HOUR_OF_DAY),
@@ -173,7 +172,7 @@ public class AddScheduleActivity extends AppCompatActivity
                         mScheduleEnd.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         mScheduleEnd.set(Calendar.MINUTE, minute);
                         mScheduleEnd.set(Calendar.SECOND, second);
-                        btnScheduleTimeEnd.setText(TIME_FORMAT.format(mScheduleEnd.getTime()));
+                        mBtnScheduleTimeEnd.setText(TIME_FORMAT.format(mScheduleEnd.getTime()));
                     }
                 },
                 mScheduleEnd.get(Calendar.HOUR_OF_DAY),
@@ -210,15 +209,15 @@ public class AddScheduleActivity extends AppCompatActivity
         Log.v(LOG_TAG, "initViews(): startDate = " + startDate + ", startTime = " + startTime +
                 ", endDate = " + endDate + ", endTime = " + endTime);
 
-        btnScheduleDateStart.setText(startDate);
-        btnScheduleTimeStart.setText(startTime);
-        btnScheduleDateEnd.setText(endDate);
-        btnScheduleTimeEnd.setText(endTime);
+        mBtnScheduleDateStart.setText(startDate);
+        mBtnScheduleTimeStart.setText(startTime);
+        mBtnScheduleDateEnd.setText(endDate);
+        mBtnScheduleTimeEnd.setText(endTime);
     }
 
     private ContentValues getSchedule() {
         ContentValues scheduleValues = new ContentValues();
-        scheduleValues.put(ScheduleContract.ScheduleEntry.COLUMN_TITLE, editScheduleTitle.getText().toString());
+        scheduleValues.put(ScheduleContract.ScheduleEntry.COLUMN_TITLE, mEditScheduleTitle.getText().toString());
         scheduleValues.put(ScheduleContract.ScheduleEntry.COLUMN_DETAIL, "None");
         scheduleValues.put(ScheduleContract.ScheduleEntry.COLUMN_TYPE, "None");
         scheduleValues.put(ScheduleContract.ScheduleEntry.COLUMN_DATE_START, mScheduleStart.getTimeInMillis());

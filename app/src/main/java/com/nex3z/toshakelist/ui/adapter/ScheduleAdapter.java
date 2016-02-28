@@ -25,15 +25,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("kk:mm");
 
     private static OnItemClickListener mListener;
-
-    public interface OnItemClickListener {
-        void onItemClick(int position, ScheduleAdapter.ViewHolder vh);
-    }
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.mListener = listener;
-    }
-
     private Cursor mCursor;
 
     @Override
@@ -83,7 +74,15 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         return mCursor;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.mListener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(int position, ScheduleAdapter.ViewHolder vh);
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.tv_schedule_title) public TextView tvScheduleTitle;
         @Bind(R.id.tv_schedule_start_time) public TextView tvScheduleStartTime;
         @Bind(R.id.tv_schedule_end_time) public TextView tvScheduleEndTime;
@@ -91,12 +90,17 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         public ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        mListener.onItemClick(getLayoutPosition(), ViewHolder.this);
+                    }
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-
-        }
     }
 
 }

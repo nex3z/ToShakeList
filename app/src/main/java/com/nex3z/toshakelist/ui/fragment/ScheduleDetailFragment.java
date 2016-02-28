@@ -1,70 +1,53 @@
 package com.nex3z.toshakelist.ui.fragment;
 
-import android.app.Activity;
-import android.support.design.widget.CollapsingToolbarLayout;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nex3z.toshakelist.R;
-import com.nex3z.toshakelist.ui.activity.ScheduleDetailActivity;
-import com.nex3z.toshakelist.ui.activity.ScheduleListActivity;
-import com.nex3z.toshakelist.dummy.DummyContent;
 
-/**
- * A fragment representing a single Schedule detail screen.
- * This fragment is either contained in a {@link ScheduleListActivity}
- * in two-pane mode (on tablets) or a {@link ScheduleDetailActivity}
- * on handsets.
- */
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ScheduleDetailFragment extends Fragment {
-    /**
-     * The fragment argument representing the item ID that this fragment
-     * represents.
-     */
+    private static final String LOG_TAG = ScheduleDetailFragment.class.getSimpleName();
+
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String DETAIL_URI = "URI";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
-    private DummyContent.DummyItem mItem;
+    private Uri mUri;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public ScheduleDetailFragment() {
-    }
+    @Bind(R.id.tv_schedule_detail) TextView mTvScheduleDetail;
+
+    public ScheduleDetailFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+//        if (getArguments().containsKey(ARG_ITEM_ID)) {
+//            Activity activity = this.getActivity();
+//            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+//        }
 
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.content);
-            }
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.schedule_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_schedule_detail, container, false);
+        ButterKnife.bind(this, rootView);
 
-        // Show the dummy content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.schedule_detail)).setText(mItem.details);
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            mUri = arguments.getParcelable(DETAIL_URI);
+            Log.v(LOG_TAG, "onCreateView(): mUri = " + mUri);
+            mTvScheduleDetail.setText(mUri.toString());
         }
 
         return rootView;

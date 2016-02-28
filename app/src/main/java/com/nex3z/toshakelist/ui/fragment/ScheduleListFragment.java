@@ -1,6 +1,8 @@
 package com.nex3z.toshakelist.ui.fragment;
 
+import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -49,6 +51,16 @@ public class ScheduleListFragment extends Fragment implements LoaderManager.Load
     public static final int COL_SCHEDULE_REPEAT_ALARM_TIMES = 8;
     public static final int COL_SCHEDULE_REPEAT_ALARM_INTERVAL = 9;
 
+    public interface Callbacks {
+        void onItemSelected(Uri uri, ScheduleAdapter.ViewHolder vh);
+    }
+
+    private static Callbacks sDummyCallbacks = new Callbacks() {
+        @Override
+        public void onItemSelected(Uri uri, ScheduleAdapter.ViewHolder vh) { }
+    };
+
+    private Callbacks mCallbacks = sDummyCallbacks;
 
     @Bind(R.id.rv_schedule_list) RecyclerView mRvScheduleList;
 
@@ -71,6 +83,22 @@ public class ScheduleListFragment extends Fragment implements LoaderManager.Load
     public void onActivityCreated(Bundle savedInstanceState) {
         getLoaderManager().initLoader(SCHEDULE_LOADER, null, this);
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (!(context instanceof Callbacks)) {
+            throw new IllegalStateException("Activity must implement fragment's callbacks.");
+        }
+        mCallbacks = (Callbacks) context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = sDummyCallbacks;
     }
 
     @Override
@@ -99,6 +127,18 @@ public class ScheduleListFragment extends Fragment implements LoaderManager.Load
 
     private void setupRecyclerView() {
         mScheduleAdapter = new ScheduleAdapter();
+        mScheduleAdapter.setOnItemClickListener(new ScheduleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position, ScheduleAdapter.ViewHolder vh) {
+                Log.v(LOG_TAG, "onItemClick(): position = " + position);
+                Cursor cursor = mScheduleAdapter.getCursor();
+                cursor.moveToPosition(position);
+                int id = cursor.getInt(COL_SCHEDULE_ID);
+                Uri uri = ScheduleContract.ScheduleEntry.buildScheduleUri(id);
+
+                ((Callbacks) getActivity()).onItemSelected(uri, vh);
+            }
+        });
         mRvScheduleList.setAdapter(mScheduleAdapter);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
