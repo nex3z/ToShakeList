@@ -1,4 +1,4 @@
-package com.nex3z.toshakelist.Utility;
+package com.nex3z.toshakelist.utility;
 
 import junit.framework.Assert;
 
