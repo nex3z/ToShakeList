@@ -49,13 +49,13 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
         Log.v(LOG_TAG, "onBindViewHolder(): position = " + position + ", start = " + start +
                 ", end = " + end);
 
-        holder.tvScheduleTitle.setText(title);
+        holder.mTvScheduleTitle.setText(title);
         String startTime = TIME_FORMAT.format(start);
         String endTime = TIME_FORMAT.format(start);
         Log.v(LOG_TAG, "onBindViewHolder(): startTime = " + startTime + ", endTime = " + endTime);
 
-        holder.tvScheduleStartTime.setText(startTime);
-        holder.tvScheduleEndTime.setText(endTime);
+        holder.mTvScheduleStartTime.setText(startTime);
+        holder.mTvScheduleEndTime.setText(endTime);
     }
 
     @Override
@@ -83,9 +83,9 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.tv_schedule_title) public TextView tvScheduleTitle;
-        @Bind(R.id.tv_schedule_start_time) public TextView tvScheduleStartTime;
-        @Bind(R.id.tv_schedule_end_time) public TextView tvScheduleEndTime;
+        @Bind(R.id.tv_schedule_title) public TextView mTvScheduleTitle;
+        @Bind(R.id.tv_schedule_start_time) public TextView mTvScheduleStartTime;
+        @Bind(R.id.tv_schedule_end_time) public TextView mTvScheduleEndTime;
 
         public ViewHolder(View view) {
             super(view);

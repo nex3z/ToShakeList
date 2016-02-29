@@ -9,7 +9,7 @@ import android.os.HandlerThread;
 import android.test.AndroidTestCase;
 import android.util.Log;
 
-import com.nex3z.toshakelist.Utility.PollingCheck;
+import com.nex3z.toshakelist.utility.PollingCheck;
 
 import java.util.Map;
 import java.util.Set;

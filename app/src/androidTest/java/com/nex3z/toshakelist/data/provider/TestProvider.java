@@ -173,7 +173,7 @@ public class TestProvider extends AndroidTestCase {
         cursor.moveToFirst();
         for ( int i = 0; i < BULK_INSERT_RECORDS_TO_INSERT; i++, cursor.moveToNext() ) {
             TestUtility.validateCurrentRecord(
-                    "testBulkInsert(). Error validating WeatherEntry " + i,
+                    "testBulkInsert(). Error validating ScheduleEntry " + i,
                     cursor, bulkInsertContentValues[i]);
         }
         cursor.close();
